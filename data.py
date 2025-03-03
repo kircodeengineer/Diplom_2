@@ -10,3 +10,6 @@ class Messages:
 
     class Login:
         INCORRECT_USER_DATA = 'email or password are incorrect'
+
+    class ChangeUserData:
+        NOT_AUTHORIZED = 'You should be authorised'
