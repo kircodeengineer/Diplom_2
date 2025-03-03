@@ -7,14 +7,13 @@ import urls
 
 class TestCreateUser:
 
-    def test_create_user_success(self):
-        response = requests.post(f'{urls.MAIN_URL}{urls.Hands.CREATE_USER}', data=User.create_user_data())
+    def test_create_user_success(self, response_user_data_token):
+        response = response_user_data_token[0]
         assert response.status_code == StatusCodes.CODE_200
         assert response.json().get("success") == True
 
-    def test_create_double_user_error(self):
-        user_data = User.create_user_data()
-        response = requests.post(f'{urls.MAIN_URL}{urls.Hands.CREATE_USER}', data=user_data)
+    def test_create_double_user_error(self, response_user_data_token):
+        user_data = response_user_data_token[1]
         response = requests.post(f'{urls.MAIN_URL}{urls.Hands.CREATE_USER}', data=user_data)
         assert response.status_code == StatusCodes.CODE_403
         assert response.json().get("message") == Messages.CreateUser.USER_EXISTS
