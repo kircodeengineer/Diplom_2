@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-from data import StatusCodes, Messages
+from data import *
 import urls
 
 
