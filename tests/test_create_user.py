@@ -10,14 +10,14 @@ class TestCreateUser:
     def test_create_user_success(self):
         response = requests.post(f'{urls.MAIN_URL}{urls.Hands.CREATE_USER}', data=User.create_user_data())
         assert response.status_code == StatusCodes.CODE_200
-        assert response.json()["success"] is True
+        assert response.json().get("success") == True
 
     def test_create_double_user_error(self):
         user_data = User.create_user_data()
         response = requests.post(f'{urls.MAIN_URL}{urls.Hands.CREATE_USER}', data=user_data)
         response = requests.post(f'{urls.MAIN_URL}{urls.Hands.CREATE_USER}', data=user_data)
         assert response.status_code == StatusCodes.CODE_403
-        assert response.json()["message"] in Messages.CreateUser.USER_EXISTS
+        assert response.json().get("message") == Messages.CreateUser.USER_EXISTS
 
     @pytest.mark.parametrize("user_data",
                              [
@@ -29,4 +29,4 @@ class TestCreateUser:
     def test_create_user_empty_data(self, user_data):
         response = requests.post(f'{urls.MAIN_URL}{urls.Hands.CREATE_USER}', data=user_data)
         assert response.status_code == StatusCodes.CODE_403
-        assert response.json()["message"] in Messages.CreateUser.EMPTY_FIELD
+        assert response.json().get("message") == Messages.CreateUser.EMPTY_FIELD
