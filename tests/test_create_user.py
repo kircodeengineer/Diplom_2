@@ -5,8 +5,8 @@ from data import *
 from user_data import User
 import urls
 
-class TestCreateUser:
 
+class TestCreateUser:
     def test_create_user_success(self, response_user_data_token):
         response = response_user_data_token[0]
         assert response.status_code == StatusCodes.CODE_200
@@ -20,9 +20,9 @@ class TestCreateUser:
 
     @pytest.mark.parametrize("user_data",
                              [
-                                 User.create_user_data_empty_email(),
-                                 User.create_user_data_empty_password(),
-                                 User.create_user_data_empty_name()
+                                 User.create_user_data_no_email(),
+                                 User.create_user_data_no_password(),
+                                 User.create_user_data_no_name()
                              ]
                              )
     def test_create_user_empty_data(self, user_data):

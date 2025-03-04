@@ -14,7 +14,7 @@ class User:
         return reg_data
 
     @staticmethod
-    def create_user_data_empty_email():
+    def create_user_data_no_email():
         fake = Faker()
 
         reg_data = {
@@ -24,7 +24,7 @@ class User:
         return reg_data
 
     @staticmethod
-    def create_user_data_empty_password():
+    def create_user_data_no_password():
         fake = Faker()
 
         reg_data = {
@@ -34,7 +34,7 @@ class User:
         return reg_data
 
     @staticmethod
-    def create_user_data_empty_name():
+    def create_user_data_no_name():
         fake = Faker()
 
         reg_data = {
