@@ -18,6 +18,9 @@ class Messages:
     class ChangeUserData:
         NOT_AUTHORIZED = 'You should be authorised'
 
+    class GetUserOrders:
+        NOT_AUTHORIZED = 'You should be authorised'
+
     class CreateOrder:
         NO_INGREDIENTS_PROVIDED = "Ingredient ids must be provided"
 

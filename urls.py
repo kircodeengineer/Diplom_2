@@ -6,3 +6,4 @@ class Hands:
     DELETE_USER = '/api/auth/user'
     CHANGE_USER_DATA = '/api/auth/user'
     MAKE_ORDER = '/api/orders'
+    GET_ORDERS = '/api/orders'
