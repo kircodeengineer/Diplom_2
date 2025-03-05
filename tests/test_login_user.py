@@ -1,3 +1,4 @@
+import allure
 import pytest
 import requests
 
@@ -6,12 +7,14 @@ import urls
 
 
 class TestLogin:
+    @allure.title('Логин под существующим пользователем')
     def test_login_user(self, response_user_data_token):
         email_pass = response_user_data_token[1]
         response = requests.post(f'{urls.MAIN_URL}{urls.Hands.LOGIN}', data=email_pass)
         assert response.status_code == StatusCodes.CODE_200
         assert response.json().get('success') == True
 
+    @allure.title('Логин с неверным логином и паролем')
     @pytest.mark.parametrize("wrong_field", ["email", "password"])
     def test_login_user_error(self, response_user_data_token, wrong_field):
         email_pass = response_user_data_token[1]

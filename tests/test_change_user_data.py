@@ -1,10 +1,13 @@
+import allure
 import requests
 import pytest
-import urls
 
+import urls
 from data import StatusCodes, Messages
 
+
 class TestChangUserData:
+    @allure.title('Изменение данных пользователя с авторизацией {change_field}')
     @pytest.mark.parametrize('change_field', ['email', 'name'])
     def test_changing_user_data_with_auth(self, response_user_data_token, change_field):
         payload = {
@@ -17,7 +20,7 @@ class TestChangUserData:
         assert response.status_code == StatusCodes.CODE_200
         assert response.json().get('user').get(change_field) == payload[change_field]
 
-
+    @allure.title('Изменение пароля пользователя')
     def test_changing_user_data_password_with_auth(self, response_user_data_token):
         payload = {
             'password' : response_user_data_token[1]['password'] + '1'
@@ -29,6 +32,7 @@ class TestChangUserData:
         assert response.status_code == StatusCodes.CODE_200
         assert response.json().get('success') == True
 
+    @allure.title('Изменение данных пользователя без авторизации')
     @pytest.mark.parametrize('change_field', ['email', 'name', 'password'])
     def test_changing_user_data_no_auth(self, response_user_data_token, change_field):
         payload = {

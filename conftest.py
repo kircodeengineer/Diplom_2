@@ -1,8 +1,10 @@
+import allure
 import requests
 import pytest
 from user_data import User
 import urls
 
+@allure.step('Регистрация и удаление пользователя')
 @pytest.fixture()
 def response_user_data_token():
     user_data = User.create_user_data()

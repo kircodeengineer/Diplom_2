@@ -1,3 +1,4 @@
+import allure
 import requests
 
 import urls
@@ -5,6 +6,7 @@ from data import *
 
 
 class TestGetUserOrders:
+    @allure.title('Получение заказов авторизованного пользователя')
     def test_get_user_orders_with_auth(self, response_user_data_token):
         token = {
             'Authorization': response_user_data_token[2]
@@ -14,6 +16,7 @@ class TestGetUserOrders:
         assert response_get_user_orders.status_code == StatusCodes.CODE_200
         assert response_get_user_orders.json().get('orders')[0].get('number') == requests_create_order.json().get('order').get('number')
 
+    @allure.title('Получение заказов неавторизованного пользователя')
     def test_get_user_orders_no_auth(self):
         response_get_user_orders = requests.get(f"{urls.MAIN_URL}{urls.Hands.GET_ORDERS}")
         assert response_get_user_orders.status_code == StatusCodes.CODE_401
