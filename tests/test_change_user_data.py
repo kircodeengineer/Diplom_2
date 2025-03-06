@@ -30,7 +30,7 @@ class TestChangUserData:
         }
         response = requests.patch(f"{urls.MAIN_URL}{urls.Hands.CHANGE_USER_DATA}", headers=token, data=payload)
         assert response.status_code == StatusCodes.CODE_200
-        assert response.json().get('success') == True
+        assert response.json().get('success')
 
     @allure.title('Изменение данных пользователя без авторизации')
     @pytest.mark.parametrize('change_field', ['email', 'name', 'password'])

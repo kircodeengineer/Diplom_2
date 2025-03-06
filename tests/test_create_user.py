@@ -12,7 +12,7 @@ class TestCreateUser:
     def test_create_user_success(self, response_user_data_token):
         response = response_user_data_token[0]
         assert response.status_code == StatusCodes.CODE_200
-        assert response.json().get('success') == True
+        assert response.json().get('success')
 
     @allure.title('Создать пользователя, который уже зарегистрирован')
     def test_create_double_user_error(self, response_user_data_token):

@@ -12,7 +12,7 @@ class TestLogin:
         email_pass = response_user_data_token[1]
         response = requests.post(f'{urls.MAIN_URL}{urls.Hands.LOGIN}', data=email_pass)
         assert response.status_code == StatusCodes.CODE_200
-        assert response.json().get('success') == True
+        assert response.json().get('success')
 
     @allure.title('Логин с неверным логином и паролем')
     @pytest.mark.parametrize("wrong_field", ["email", "password"])

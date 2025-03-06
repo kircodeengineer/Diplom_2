@@ -10,13 +10,13 @@ class TestCreateOrder:
         token = {'Authorization': response_user_data_token[2]}
         response = requests.post(f"{urls.MAIN_URL}{urls.Hands.MAKE_ORDER}", headers=token, data=IngredientsData.VALID_HASH)
         assert response.status_code == StatusCodes.CODE_200
-        assert response.json().get('success') is True
+        assert response.json().get('success')
 
     @allure.title('Создание заказа без авторизации и верным хешем ингредиентов')
     def test_create_order_not_auth(self):
         response = requests.post(f"{urls.MAIN_URL}{urls.Hands.MAKE_ORDER}", data=IngredientsData.VALID_HASH)
         assert response.status_code == StatusCodes.CODE_200
-        assert response.json().get('success') is True
+        assert response.json().get('success')
 
     @allure.title('Создание заказа без ингредиентов')
     def test_create_order_with_no_ingredient(self):
